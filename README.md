@@ -1,6 +1,6 @@
-# SalePoint #
+# DP2 Project #
 
-### DP2 Project ###
+## SalePoint ##
 
 
 ### Tutor ###
