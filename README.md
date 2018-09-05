@@ -1,13 +1,14 @@
-# SalePoint
+# SalePoint #
 
-#DP2 Project
+### DP2 Project ###
 
 
-Tutors Name:Kaberi Naznin
+### Tutor ###
+*  Kaberi Naznin
 
-Team Members: 
+### Team Members ###
 
-Zach Keuken - 2069695
-Ashrai Pujari - 101082588
-Gagan Modi - 7696922
-Wassim Bouhbouh - 100590129
+* Zach Keuken - 2069695
+* Ashrai Pujari - 101082588
+* Gagan Modi - 7696922
+* Wassim Bouhbouh - 100590129
