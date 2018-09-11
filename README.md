@@ -1,8 +1,5 @@
 # DP2 Project #
 
-## SalePoint ##
-
-
 ### Tutor ###
 *  Kaberi Naznin
 
