@@ -14,10 +14,7 @@
           
                     
       </header>
-
-
-<h2 align="right" style="margin-right:20px;"><a href="adminlogin.php">Admin Login</a></h2>
-
+    
 <form action="login.php" method="post">
     
     
