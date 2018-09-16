@@ -15,8 +15,6 @@
                     
       </header>
 
-
-
 <form action="login.php" method="post">
     
     
@@ -89,3 +87,5 @@ if(isset($_GET['uname']) && $_GET['uname']!=='' && isset($_GET['pass']) && $_GET
     }
 ?>
 </html>
+
+
