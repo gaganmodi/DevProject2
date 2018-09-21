@@ -20,7 +20,7 @@ body {
     
     width:1480px; 
     margin: 0 auto;
-    background: #741d1d;
+    background: #4BEA68;
 }
 
  .header {
@@ -132,4 +132,24 @@ footer a {
     margin: 4px 2px;
     cursor: pointer;
     width: 250px;
+}
+
+#nav {
+width:750px;
+margin:0 auto;
+padding: 0;
+list-style:none;
+}
+#nav li {
+float:left;
+padding: 14px 16px;
+}
+#nav a {
+display:block;
+text-align:center;
+width:150px; /* fixed width */
+text-decoration:none; 
+}
+#nav li a:hover {
+    background-color: #111;
 }
