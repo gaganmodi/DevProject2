@@ -20,7 +20,7 @@ body {
     
     width:1480px; 
     margin: 0 auto;
-    background: #4BEA68;
+    background: #73DE02
 }
 
  .header {
@@ -151,5 +151,5 @@ width:150px; /* fixed width */
 text-decoration:none; 
 }
 #nav li a:hover {
-    background-color: #111;
+    background-color: #73DE02;
 }
