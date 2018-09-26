@@ -10,12 +10,14 @@
 </head>
 <body>
   <?php
+  
+  
 
-  $DBconnect = @mysqli_connect("feenix-mariadb.swin.edu.au", "s100590129","301196", "s100590129_db");
+  $DBconnect = @mysqli_connect("localhost", "root", "", "mine");
 
 
   $id = $name = $qty = $price = $category = $cost = $desc = $normal_price = $desc = $stock_order = "";
-  $idErr = $nameErr = $qtyErr = $priceErr = $categoryErr = $costErr = $descErr = $normal_priceErr = $stock_orderErr = "";
+  $idErr = $nameErr = $qtyErr = $priceErr = $categoryErr = $costErr = $descErr = $normal_priceErr = $stock_orderErr = $confirmation = "";
 
 
   if ($_SERVER["REQUEST_METHOD"] == "POST")
@@ -102,7 +104,26 @@
           $stock_orderErr = "Product price should be numeric";
         }
       }
-
+	  else
+	  {
+		  $id = $_POST["prod_id"];
+		  $name = $_POST["prod_name"];
+		  $qty = $_POST["prod_qty"];
+		  $price = $_POST["prod_price"];
+		  $category = $_POST["prod_category"];
+		  $cost = $_POST["prod_cost"];
+		  $desc = $_POST["prod_desc"];
+		  $normal_price = $_POST["prod_Normal_price"];
+		  $stock_order = $_POST["prod_stock_order"];
+		  $sold_date = date("d-m-y");
+		  
+		  $query = "INSERT INTO inventory(id, name, qty, price, category, cost, description, normal_price, stock_order, date_sold) Values ('".$id."','".$name."','".$qty."','".$price."','".$category."','".$cost."','".$desc."','".$normal_price."','".$stock_order."','".$sold_date."');";
+		  
+		  $result = @mysqli_query($DBconnect, $query) or die("There has been error. please try again");
+		  
+		  $confirmation = "Thank you the product $name has been successfully added ";
+			
+	  }
     }
 
     else
@@ -156,7 +177,7 @@
         </tr>
         <tr>
           <td>Product Description:</td>
-          <td><textarea rows="3" cols="15" name="prod_desc"></textarea><span class="error">* <?php echo $descErr;?></td><td><p>Brief Description should have at most 500 characters</p></td>
+          <td><textarea rows="3" cols="20" name="prod_desc"></textarea><span class="error">* <?php echo $descErr;?></td><td><p>Brief Description should have at most 500 characters</p></td>
         </tr>
         <tr>
           <td>Product normal price:</td>
@@ -172,6 +193,7 @@
         </tr>
       </table>
     </form>
+	<h3><?php echo $confirmation;?></h3>
     <footer>
       &copy; 2018 SalePoint &nbsp; <span class="separator">|</span> Design by GROUP 03
     </footer>
