@@ -11,69 +11,106 @@
 <body>
   <?php
 
-  DBconnect = @mysqli_connect("localhost", "root","","mine")
-  
+  $DBconnect = @mysqli_connect("feenix-mariadb.swin.edu.au", "s100590129","301196", "s100590129_db");
+
+
   $id = $name = $qty = $price = $category = $cost = $desc = $normal_price = $desc = $stock_order = "";
   $idErr = $nameErr = $qtyErr = $priceErr = $categoryErr = $costErr = $descErr = $normal_priceErr = $stock_orderErr = "";
 
 
-  if (isset($_POST['submit']))
+  if ($_SERVER["REQUEST_METHOD"] == "POST")
   {
     if($DBconnect)
-	{
-		if(empty($_POST["prod_id"]))
-		{
-			$idErr = "Product Id is required";		
-		}
+    {
+      if(empty($_POST["prod_id"]))
+      {
+        $idErr = "Product Id is required";
+      }
 
-		if(empty($_POST["prod_name"]))
-		{
-			$nameErr = "Product name is required";
-		}
-	
-		if(empty($_POST["prod_qty"]))
-		{
-			$qtyErr = "Product Qty is required";
-		}
+      if(empty($_POST["prod_name"]))
+      {
+       $nameErr = "Product name is required";
+      }
 
-		if(empty($_POST["prod_price"]))
-		{
-			$priceErr = "Product price is required";
-		}
-		if(empty($_POST["prod_category"]))
-		{
-			$categoryErr = "Product category is required";
-		}
+      if(!is_numeric($_POST["prod_qty"]))
+      {
+        if(empty($_POST["prod_qty"]))
+        {
+          $qtyErr = "Product Qty is required";
+        }
+        else
+        {
+          $qtyErr = "Product Qty should be numeric";
+        }
+      }
 
-		if(empty($_POST["prod_cost"]))
-		{
-			$costErr = "Product cost is required";
-		}
-		if(empty($_POST["prod_desc"]))
-		{
-			$descErr = "Product description is required";
-		}
+      if(!is_numeric($_POST["prod_price"]))
+      {
+        if(empty($_POST["prod_price"]))
+        {
+          $priceErr = "Product price is required";
+        }
 
-		if(empty($_POST["prod_Normal_price"]))
-		{
-			$normal_priceErr = "Product normal price is required";
-		}
+        else
+        {
+          $priceErr = "Product price should be numeric";
+        }
+      }
 
-		if(empty($_POST["prod_stock_order"]))
-		{
-			$stock_orderErr = "Product stock order is required";
-		}
-		
-		else
-		{
-			$qtyErr = $priceErr = $costErr = $descErr = $normal_priceErr = $stock_orderErr = "";
-			
-			
-		}
-	
-	}
-	
-	else 
+      if(empty($_POST["prod_category"]))
+      {
+        $categoryErr = "Product category is required";
+      }
+
+      if(!is_numeric($_POST["prod_cost"]))
+      {
+        if(empty($_POST["prod_cost"]))
+        {
+          $costErr = "Product cost is required";
+        }
+        else
+        {
+          $costErr = "Product price should be numeric";
+        }
+      }
+
+      if(empty($_POST["prod_desc"]))
+      {
+        $descErr = "Product description is required";
+      }
+
+      if(!is_numeric($_POST["prod_Normal_price"]))
+      {
+        if(empty($_POST["prod_Normal_price"]))
+        {
+          $normal_priceErr = "Product cost is required";
+        }
+        else
+        {
+          $costErr = "Product price should be numeric";
+        }
+      }
+
+      if(!is_numeric($_POST["prod_stock_order"]))
+      {
+        if(empty($_POST["prod_stock_order"]))
+        {
+          $stock_orderErr = "Product cost is required";
+        }
+        else
+        {
+          $stock_orderErr = "Product price should be numeric";
+        }
+      }
+
+    }
+
+    else
+    {
+      echo "Could not connect database.";
+    }
+
+
   }
   ?>
 
@@ -91,7 +128,7 @@
       <p><span class="error">* required field</span></p>
       <div>
       </div>
-     <h3>Please fill in the fields below to add a product.</h3>
+     <h3>Add product :</h3>
       <table id="table1"; cellspacing="5px" cellpadding="5%">
         <tr>
           <td>Product Id:</td>
@@ -130,7 +167,7 @@
           <td><input type="text" name="prod_stock_order"><span class="error">* <?php echo $stock_orderErr;?></span></td>
         </tr>
         <tr>
-          <td> <input type="submit" name = "submit" value="Submit" /></td>
+          <td> <input type="submit" name = "add" value="Submit" /></td>
           <td> <input type="reset" name = "reset" value="Clear" /></td>
         </tr>
       </table>
