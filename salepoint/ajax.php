@@ -7,7 +7,7 @@
 			$start = $conn->real_escape_string($_POST['start']);
 			$limit = $conn->real_escape_string($_POST['limit']);
 
-			$sql = $conn->query("SELECT id, ProductID, SaleDate, NumberOfSale FROM sales LIMIT $start, $limit");
+			$sql = $conn->query("SELECT id, ProductID, SaleDate, NumberOfSale FROM PHPSales LIMIT $start, $limit");
 			if ($sql->num_rows > 0) {
 				$response = "";
 				while($data = $sql->fetch_array()) {
@@ -35,7 +35,7 @@
 
 		if ($_POST['key'] == 'addNew') {
 
-				$conn->query("INSERT INTO sales (ProductID, SaleDate, NumberOfSale) 
+				$conn->query("INSERT INTO PHPSales (ProductID, SaleDate, NumberOfSale) 
 							VALUES ('$ProductID', '$SaleDate', '$NumberOfSale')");
 				exit('New Sale Has Been Inserted!');
 		
