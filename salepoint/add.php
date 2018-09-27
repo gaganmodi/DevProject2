@@ -117,7 +117,7 @@
 		  $stock_order = $_POST["prod_stock_order"];
 		  $sold_date = date("d-m-y");
 		  
-		  $query = "INSERT INTO inventory(id, name, qty, price, category, cost, description, normal_price, stock_order, date_sold) Values ('".$id."','".$name."','".$qty."','".$price."','".$category."','".$cost."','".$desc."','".$normal_price."','".$stock_order."','".$sold_date."');";
+		  $query = "INSERT INTO PHPInventory(id, name, qty, price, category, cost, description, normal_price, stock_order, date_sold) Values ('".$id."','".$name."','".$qty."','".$price."','".$category."','".$cost."','".$desc."','".$normal_price."','".$stock_order."','".$sold_date."');";
 		  
 		  $result = @mysqli_query($DBconnect, $query) or die("There has been error. please try again");
 		  
