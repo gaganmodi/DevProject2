@@ -41,7 +41,7 @@
 				$end_date = date('Y-m-d', strtotime($_POST['end_date']));
 
 				// Attempt select query execution
-				$SQLstring = "SELECT item_name, SaleDate, NumberOfSale, staff_fname, staff_lname  FROM PHPSales, PHPInventory, PHPStaff WHERE StaffID = staff_id AND ProductID = item_id AND SaleDate BETWEEN '$start_date' AND '$end_date'";
+				$SQLstring = "SELECT item_name, item_currentprice, item_stockorder, SaleDate, NumberOfSale, staff_fname, staff_lname  FROM PHPSales, PHPInventory, PHPStaff WHERE StaffID = staff_id AND ProductID = item_id AND SaleDate BETWEEN '$start_date' AND '$end_date'";
 				
 				$queryResult = @mysqli_query($DBConnect, $SQLstring)
 				Or die ("<p>Unable to query the $TableName table.</p>"."<p>Error code ". mysqli_errno($DBConnect). ": ".mysqli_error($DBConnect)). "</p>";
@@ -50,13 +50,20 @@
 					echo "<table>";
 						echo "<tr>";
 							echo "<th>Item Name</th>";
+							echo "<th>Item Price</th>";
+							echo "<th>Quantity Sold</th>";
+							echo "<th>Total Sale Amount</th>";
 							echo "<th>Sale Date</th>";
 							echo "<th>Number of Sale</th>";
-							echo "<th>Staff Name</th>";
+							echo "<th>Registrar</th>";
 						echo "</tr>";
 					while($row = mysqli_fetch_array($queryResult)){
+						$total_sale = intval($row['item_currentprice']) * intval($row['item_stockorder']);
 						echo "<tr>";
 							echo "<td>" . $row['item_name'] . "</td>";
+							echo "<td>" . $row['item_currentprice'] . "</td>";
+							echo "<td>" . $row['item_stockorder'] . "</td>";
+							echo "<td>" . $total_sale . "</td>";
 							echo "<td>" . $row['SaleDate'] . "</td>";
 							echo "<td>" . $row['NumberOfSale'] . "</td>";
 							echo "<td>" . $row['staff_fname'] . " " . $row['staff_lname'] . "</td>";
