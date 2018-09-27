@@ -3,8 +3,8 @@
 body {
     
  background: #F4F4F4; 
- margin:0;  
-    
+ width: 100%;   
+ height: 100%; 
 }
 
 .link-title{
@@ -18,7 +18,6 @@ body {
 
 .container {
     
-    width:1480px; 
     margin: 0 auto;
     background: #73DE02
 }
@@ -29,71 +28,6 @@ body {
     border: 2px solid black;
     text-align: center;
 } 
-
-.menu {
-    
-    background: #3b7687;
-    padding: 6px 0 6px 40px;
-    
-}
-
-.menu a {
-    
-    color: #c5d6db;
-    text-decoration: none;
-    font-size: 14px;
-    font-family: "Arial narrow", "Myriad Pro";
-}
-
-.menu a:hover {
-    
-    color: #ecf2f3;
-}
-
-/* aside {
-    
-    float: left;
-    width: 120px;
-    padding: 30px 0 0 40px;
-}
- */
-h1 {
-    
-    margin: 0px;
-    color:#869843;
-    font-size: 24px;
-    font-family: "Arial narrow", "Myriad Pro";
-    font-weight: normal;
-    
-}
-
-h2 {
-    
-    color: #3b7687;
-    font-size = 15px;
-    margin: 20px 0 5px 0;
-}
-
-.main {
-    
-    /* margin: 0 0 0 180px; */
-    padding: 35px 40px 30px 0;
-    color: #444444;
-    font-family: "Georgia";
-    font-size: 13px;
-    line-height: 18px;
-    text-align: center;
-    
-}
-
-/* .main s:hover {
-    color :#444444;
-    
-} */
-
-/* #home-image img {
-    width: 100%;
-} */
 
 footer {
     
@@ -113,43 +47,28 @@ footer a {
     
 }
 
-/* .separator {
-    
-    color:#FFFFFF;
-    font-size: 11px;
-    
-    
-} */
-.button {
-    background-color: #8b7c49;
-    border: none;
-    color: #0b0a09;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    width: 250px;
+nav
+{
+    background-color: #3DA7C7;
+    height: 40px;
+    width: 100%;
 }
-
-#nav {
-width:750px;
-margin:0 auto;
+ul {
+margin:0;
 padding: 0;
 list-style:none;
 }
-#nav li {
+ul li {
 float:left;
-padding: 14px 16px;
+padding: 10px 16px;
 }
-#nav a {
+ul li a {
 display:block;
 text-align:center;
-width:150px; /* fixed width */
+width:325px; /* fixed width */
+height: 20px;
 text-decoration:none; 
 }
-#nav li a:hover {
+ul li:hover {
     background-color: #73DE02;
 }
