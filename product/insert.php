@@ -1,45 +1,66 @@
-<?php
+<?php 
+  require '../conn.php';
 	if (isset($_POST['key'])) {
 
-		$conn = new mysqli('127.0.0.1:3308', 'root', '', 'php');
-
 		if ($_POST['key'] == 'getExistingData') {
-			$start = $conn->real_escape_string($_POST['start']);
-			$limit = $conn->real_escape_string($_POST['limit']);
+			$limit = intval($_POST['limit']);
 
-			$sql = $conn->query("SELECT products.id,products.description, products.price,products.startingInventory,products.minRequired,IFNULL(SUM(sales.NumberOfSale),0) as NumberOfSale,sales.ProductID
-            FROM products
-            LEFT JOIN sales
-            ON products.id = sales.ProductID
-        GROUP By id LIMIT $start, $limit");
-			if ($sql->num_rows > 0) {
+			$query = "
+				SELECT item_id, item_name, item_price, startingInventory, minRequired, IFNULL(SUM(NumberOfSale),0) as NumberOfSale, IFNULL(SUM(OrderQuantity),0) as Quantity
+				FROM PHPInventory
+				LEFT JOIN PHPSales
+				ON item_id = ProductID
+				LEFT JOIN PHPOrders
+				ON item_id = OrderProductID
+				GROUP BY item_id
+			";
+			
+			$sql = @mysqli_query($conn, $query)
+			Or die ("<p>Unable to query the $TableName table.</p>"."<p>Error code ". mysqli_errno($conn). ": ".mysqli_error($conn)). "</p>";
+			
+			if ((mysqli_num_rows($sql) > 0) && (mysqli_num_rows($sql) < $limit)) {
 				$response = "";
-				while($data = $sql->fetch_array()) {
-					$response .= '
+				while($data = mysqli_fetch_array($sql)) {
+					$invOnHand = intval($data['startingInventory']) - intval($data['NumberOfSale']) + intval($data['Quantity']);
+					$response .= "
 						<tr>
-							<td>'.$data["id"].'</td>
-							<td>'.$data["description"].'</td>
-                            <td>'.$data["price"].'</td>
-                            <td>'.$data["startingInventory"].'</td>
-                            <td></td>
-                            <td>'.$data["NumberOfSale"].'</td>
-                            <td></td>
-                            <td>'.$data["minRequired"].'</td>
-                        </tr>
-					';
+							<td>" . $data['item_id'] . "</td>
+							<td>" . $data['item_name'] . "</td>
+              <td>" . $data['item_price'] . "</td>
+              <td>" . $data['startingInventory'] . "</td>
+              <td>" . $data['Quantity'] . "</td>
+              <td>" . $data['NumberOfSale'] . "</td>
+              <td>" . $invOnHand . "</td>
+              <td>" . $data['minRequired'] . "</td>
+            </tr>
+					";
 				}
+        // Free result set
+        mysqli_free_result($sql);
 				exit($response);
 			} else
 				exit('reachedMax');
+			
+			mysqli_close($conn);
 		}
 
-		$description = $conn->real_escape_string($_POST['description']);
-		$price = $conn->real_escape_string($_POST['price']);
-		$startingInventory = $conn->real_escape_string($_POST['startingInventory']);
-        $minRequired  = $conn->real_escape_string($_POST['minRequired']);
+		$itemName = mysqli_real_escape_string($conn, $_POST['itemName']);
+		$itemCategory = mysqli_real_escape_string($conn, $_POST['itemCategory']);
+		$price = mysqli_real_escape_string($conn, $_POST['price']);
+		$startingInventory = mysqli_real_escape_string($conn, $_POST['startingInventory']);
+        $minRequired  = mysqli_real_escape_string($conn, $_POST['minRequired']);
+		$maxCapacity  = mysqli_real_escape_string($conn, $_POST['maxCapacity']);
 		if ($_POST['key'] == 'addNew') {
-
-				$conn->query("INSERT INTO `products`(`description`,`price`,`minRequired`,`startingInventory`) VALUE ('$description','$price','$startingInventory','$minRequired')");
+				$query = "
+					INSERT INTO PHPInventory (
+						item_name, item_price, item_stock, item_maxcapacity, item_category, minRequired, startingInventory
+					) 
+					VALUES (
+						'$itemName', '$price', '$startingInventory', '$maxCapacity', '$itemCategory', '$minRequired', '$startingInventory'
+					)";
+				$sql = @mysqli_query($conn, $query)
+				Or die (mysqli_errno($conn). ": ".mysqli_error($conn));
+				mysqli_close($conn);
 				exit('New Sale Has Been Inserted!');
 		
 		}
