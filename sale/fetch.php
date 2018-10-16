@@ -1,30 +1,25 @@
 <?php
-//fetch.php
-if(isset($_POST["action"]))
-{
- $connect = mysqli_connect('127.0.0.1:3308', 'root', '', 'php');
- $output = '';
- if($_POST["action"] == "description")
- {
-  $query = "SELECT id FROM `products` WHERE description = '".$_POST["query"]."' ";
-  $result = mysqli_query($connect, $query);
-     
-  $output .= '<option value="">Product ID</option>';
-  while($row = mysqli_fetch_array($result))
-  {
-   $output .= '<option value="'.$row["id"].'">'.$row["id"].'</option>';
+  include '../conn.php';
+  if(isset($_POST["action"])) {
+    $output = '';
+    if($_POST["action"] == "item_name") {
+      $query = "SELECT item_id FROM `PHPInventory` WHERE item_name = '".$_POST["query"]."' ";
+      $result = @mysqli_query($conn, $query);
+      while($row = mysqli_fetch_array($result))
+      {
+        $output .= '<option value="'.$row["item_id"].'" selected>'.$row["item_id"].'</option>';
+      }
+    }
+    if($_POST["action"] == "staff_name") {
+      $name = $_POST["query"];
+      list($fname, $lname) = explode(" ", $name);
+      $query = "SELECT staff_id FROM `PHPStaff` WHERE staff_fname = '".$fname."' AND staff_lname = '".$lname."' ";
+      $result = @mysqli_query($conn, $query);
+      while($row = mysqli_fetch_array($result))
+      {
+        $output .= '<option value="'.$row["staff_id"].'" selected>'.$row["staff_id"].'</option>';
+      }
+    }
+    echo $output;
   }
- }
- //if($_POST["action"] == "state")
-// {
-//  $query = "SELECT city FROM country_state_city WHERE state = '".$_POST["query"]."'";
-//  $result = mysqli_query($connect, $query);
-//  $output .= '<option value="">Select City</option>';
-//  while($row = mysqli_fetch_array($result))
-//  {
-//   $output .= '<option value="'.$row["city"].'">'.$row["city"].'</option>';
-//  }
-// }
- echo $output;
-}
 ?>
