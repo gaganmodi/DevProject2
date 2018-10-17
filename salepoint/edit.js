@@ -3,6 +3,7 @@ function sleep(ms) {
 }
 
 function editCell(e) {
+	var tss;
 	var ts = e.target.parentElement;
   	var t = e.target.parentElement.parentElement;
   	var trs = t.getElementsByTagName("tr");
