@@ -11,7 +11,7 @@
       <header class="header">
           
           
-          <a class="link-title" href="index.php">SalePoint</a>
+          <a class="link-title" href="index.php">SalePoint main</a>
           
                     
       </header>
