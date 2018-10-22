@@ -42,8 +42,8 @@
        <div class="main">
               
                   <a href="view.html" class="button">VIEW</a>
-                  <a href="manger.html" class="button">Report</a>
-                  <a href="add.html" class="button">ADD</a>
+                  <a href="" class="button">Report</a>
+                  <a href="" class="button">ADD</a>
                   <a href="edit.html" class="button">EDIT</a>
                   <br>
                   <br>
