@@ -11,7 +11,7 @@
 <form action="login.php" method="post">
     
     
-    <table align="center">
+    <table align="cente" >
         <tr>
             <td>Username</td><td><input type="text" name="uname" required></td>
         </tr>
