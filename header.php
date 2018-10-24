@@ -5,17 +5,20 @@
       <a class=\"navbar-brand\" href=\"#\" style=\"font-size: 40px\">SalePoint</a>
       <!-- Links -->
       <ul class=\"navbar-nav ml-auto\">
-        <li class=\"nav-item\" style=\"padding-right:200px\">
+        <li class=\"nav-item\" style=\"padding-right:100px\">
           <a class=\"nav-link\" href=\"../product/product.php\" style=\"font-size: 20px\">Products</a>
         </li>
-        <li class=\"nav-item\" style=\"padding-right:200px\">
+        <li class=\"nav-item\" style=\"padding-right:100px\">
           <a class=\"nav-link\" href=\"../sale/sale.php\" style=\"font-size: 20px\">Sales</a>
         </li>
-        <li class=\"nav-item\" style=\"padding-right:200px\">
+        <li class=\"nav-item\" style=\"padding-right:100px\">
           <a class=\"nav-link\" href=\"../order/order.php\" style=\"font-size: 20px\">Orders</a>
         </li>
-        <li class=\"nav-item\" style=\"padding-right:200px\">
+        <li class=\"nav-item\" style=\"padding-right:100px\">
           <a class=\"nav-link\" href=\"../report/report.php\" style=\"font-size: 20px\">Reports</a>
+        </li>
+        <li class=\"nav-item\" style=\"padding-right:100px\">
+          <a class=\"nav-link\" href=\"../supplier/supplier.php\" style=\"font-size: 20px\">Suppliers</a>
         </li>
       </ul>
       <ul class=\"nav navbar-nav ml-auto\">
