@@ -1,6 +1,6 @@
 <?php
   include '../conn.php';
-  $OrderID = $_GET['OrderID'];
+  $supplierid = $_GET['supplierid'];
   $q = "DELETE FROM `PHPOrders` WHERE OrderID = $OrderID ";
   mysqli_query($conn,$q);
   header("Location: order.php");

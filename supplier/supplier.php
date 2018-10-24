@@ -21,6 +21,7 @@
           <table class="table table-hover table-bordered">
             <thead>
               <tr class="bg-dark text-white text-center">
+                <td> Supplier ID </td>
                 <td> Supplier Name </td>
                 <td> Product Name </td>
                 <td> Quantity </td>
@@ -31,7 +32,7 @@
             <?php
               include '../conn.php';
               $sql = "
-                SELECT supplier_name, item_name, item_stock
+                SELECT supplierid, supplier_name, item_name, item_stock
                 FROM PHPSuppliers
                 INNER JOIN PHPInventory
                 ON prodid = item_id
@@ -42,10 +43,11 @@
                 while($res = mysqli_fetch_array($result)){
                   ?>
                   <tr class="text-center">
+                    <td><?php echo $res['supplierid']; ?> </td>
                     <td><?php echo $res['supplier_name']; ?> </td>
                     <td><?php echo $res['item_name']; ?> </td>
                     <td><?php echo $res['item_stock']; ?> </td>
-                    <td><button class="btn-success btn"> <a href="add.php?OrderID=<?php echo $res['OrderID']; ?>" class="text-white"> Add </a></button> </td>
+                    <td><button class="btn-success btn"> <a href="add.php?supplierid=<?php echo $res['supplierid']; ?>" class="text-white"> Add </a></button> </td>
                   </tr>
                   <?php
                 }
